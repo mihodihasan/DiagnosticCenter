@@ -143,8 +143,9 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:background="#fff"
         android:layout_width="270dp"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         android:orientation="vertical">
 

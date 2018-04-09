@@ -1,6 +1,7 @@
 package com.diagnostic.mhl.diagnosticcenter;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
@@ -29,9 +30,9 @@ import io.realm.RealmResults;
 
 public class Diagnostic extends AppCompatActivity {
     private ActionBarDrawerToggle actionBarDrawerToggle;
-    @BindView(R.id.toolbar) private Toolbar toolbar;
-    @BindView(R.id.drawer_recyclerView) private RecyclerView drawerRecyclerView;
-    @BindView(R.id.drawer_layout) private DrawerLayout drawerLayout;
+    @BindView(R.id.toolbar)  Toolbar toolbar;
+    @BindView(R.id.drawer_recyclerView)  RecyclerView drawerRecyclerView;
+    @BindView(R.id.drawer_layout)  DrawerLayout drawerLayout;
     double total = 0, discount = 0, adv = 0, payable = 0, afterDisc = 0;
 
     String name, address, contact, ref;
@@ -132,13 +133,29 @@ public class Diagnostic extends AppCompatActivity {
             }
         });
         DrawerAdapter drawerAdapter=new DrawerAdapter(testList);
-        drawerRecyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager drawerLayoutManager=new LinearLayoutManager(this);
+        drawerRecyclerView.setLayoutManager(drawerLayoutManager);
         drawerRecyclerView.setHasFixedSize(true);
         drawerRecyclerView.setAdapter(drawerAdapter);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
 
         actionBarDrawerToggle.syncState();
+
+        drawerRecyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), drawerRecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        // do whatever
+                        Intent intent = new Intent(getApplicationContext(), PatientListActivity.class);
+                        intent.putExtra("position", testList.get(position).getTestName());
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
     }
 
     public void addPrice(double price) {
