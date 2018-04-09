@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+
+    android:background="#EEEEEE"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_action_name" />
+
+    <TextView
+        android:id="@+id/id_txt_state_item"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="25dp"
+        android:gravity="center_vertical"
+        android:text="state name"
+        android:textColor="#616161"
+        android:textSize="18sp" />
+</LinearLayout>
