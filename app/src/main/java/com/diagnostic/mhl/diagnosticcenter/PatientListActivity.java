@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,12 +22,18 @@ public class PatientListActivity extends AppCompatActivity {
     PatientAdapter adapter;
     List<Patient> listPatients;
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_list);
 
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
 
         String id=getIntent().getStringExtra("position");
 
@@ -43,7 +50,7 @@ public class PatientListActivity extends AppCompatActivity {
         }
 
         manager=new LinearLayoutManager(this);
-        adapter=new PatientAdapter(listPatients,this);
+        adapter=new PatientAdapter(listPatients,this,id);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);

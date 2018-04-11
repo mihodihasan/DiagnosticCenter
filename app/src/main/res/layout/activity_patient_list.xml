@@ -6,9 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".PatientListActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/patientRecycler"
+    <include
+        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.RecyclerView
+        android:padding="5dp"
+        android:id="@+id/patientRecycler"
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
